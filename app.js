@@ -89,26 +89,60 @@
     }
   ]
  
-var btn = document.getElementsByClassName("cta");
-    
-for (var i = 0; i < btn.length; i++) {
-    btn[i].onclick = (function(i){
-        return function(){
-            var id = promotions[i].id; 
-            console.log(id);
-            var a =  document.getElementById(id).style.background = 'white'        
-		}
-    })(i);
-}
  
- for (var i = 0; i < promotions.length; i++){
-      document.getElementById("promo_title_" + [i]).innerHTML = promotions[i].title;
-     
-      document.getElementById("promo_terms_" + [i]).innerHTML = promotions[i].terms;
-     
-      document.getElementById("promo_ctaLabel_" + [i]).innerHTML = promotions[i].ctaLabel;
- }
+var ctaBtn = document.getElementsByClassName("cta");
+var modal = document.getElementById("myModal");
+var acceptPromoBtn = document.getElementById("acceptPromo");
+var declinePromoBtn = document.getElementById("declinePromo");
 
+
+
+function disablePromo(i){
+    if(promotions[i].isDisabled === true){
+        document.getElementById(promotions[i].id).style.background = 'white';        
+    }
+}
+
+(function(){
+    for (var i = 0; i < promotions.length; i++){
+        disablePromo(i);
+            
+        document.getElementById("promo_title_" + [i]).innerHTML = promotions[i].title;
+
+        document.getElementById("promo_terms_" + [i]).innerHTML = promotions[i].terms;
+
+         document.getElementById("promo_ctaLabel_" + [i]).innerHTML = promotions[i].ctaLabel;
+    }
+}());
+    
+(function() {    
+    for (var i = 0; i < ctaBtn.length; i++) {
+        
+        ctaBtn[i].onclick = (function(i){
+            return function(){
+                console.log(i);
+                acceptPromoBtn.onclick = function(){
+                    promotions[i].isDisabled = true;
+                    disablePromo(i);
+                    modal.style.display = "none";
+                    console.log(i);
+                }
+                declinePromoBtn.onclick = function(){
+                    modal.style.display = "none";
+                }
+                modal.style.display = "block";
+            }
+        }(i));
+        
+    }
+}());
+
+
+
+
+
+ 
+ 
 
 
 
