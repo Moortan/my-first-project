@@ -103,29 +103,30 @@ var declinePromoBtn = document.getElementById("declinePromo");
 
 (function createElements(){
     
-    
     for (var i = 0; i < promotions.length; i++){
         
-        //create all HTML elements dynimcally 
-        var newDiv = document.createElement("div");
-        var newH = document.createElement("h1");
-        var newButton = document.createElement("button");
-        var newP = document.createElement("p");
+        //create HTML element dynimcally 
+        var promoCointainer = document.createElement("div");
         
-        //assign classes and id's to new elements
-        newDiv.className = "area";
-        newDiv.id = promotions[i].id;
-        newH.id = "promo_title_" + i;
-        newButton.className = "cta";
-        newButton.id = "promo_ctaLabel_" + i;
-        newP.id = "promo_terms_" + i;
+        //assign class and id to new element
+        promoCointainer.className = "area";
+        promoCointainer.id = promotions[i].id;
         
-        //append new elements to already existing div
-        document.getElementById("column").appendChild(newDiv);
-        newDiv.appendChild(newH);
-        newDiv.appendChild(newButton);
-        newDiv.appendChild(newP);
+        //append new element to already existing div
+        document.getElementById("column").appendChild(promoCointainer);
         
+        var promoTitle = document.createElement("h1");
+        promoTitle.id = "promo_title_" + i;
+        promoCointainer.appendChild(promoTitle);
+        
+        var ctaButton = document.createElement("button");
+        ctaButton.className = "cta";
+        ctaButton.id = "promo_ctaLabel_" + i;
+        promoCointainer.appendChild(ctaButton);
+        
+        var promoTerms = document.createElement("p");
+        promoTerms.id = "promo_terms_" + i;
+        promoCointainer.appendChild(promoTerms);    
     }
 }());
 
