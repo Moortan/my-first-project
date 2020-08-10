@@ -141,8 +141,8 @@ function disablePromo(i){
         
         //disable button of disabled promo
         ctaBtn[i].isDisabled = true;
+        //document.getElementById("promo_ctaLabel_" + i).className += "disabledButton";
         ctaBtn[i].disabled = true;
-        document.getElementById("promo_ctaLabel_" + i).style.background = "white";
 
     }
 }
