@@ -91,7 +91,7 @@
  
 //creating a list of CTA Buttons
 //each element is a button bound with its promo
-var ctaBtn = document.getElementsByClassName("cta");
+var ctaBtn = document.getElementsByClassName("ctaButton");
 
 //modal window that appear after clicking CTA button
 var modal = document.getElementById("myModal");
@@ -109,23 +109,26 @@ var declinePromoBtn = document.getElementById("declinePromo");
         var promoCointainer = document.createElement("div");
         
         //assign class and id to new element
-        promoCointainer.className = "area";
+        promoCointainer.className = "promoContainer";
         promoCointainer.id = promotions[i].id;
         
         //append new element to already existing div
         document.getElementById("column").appendChild(promoCointainer);
         
         var promoTitle = document.createElement("h1");
+        promoTitle.className = "promoClass";        
         promoTitle.id = "promo_title_" + i;
         promoCointainer.appendChild(promoTitle);
         
         var ctaButton = document.createElement("button");
-        ctaButton.className = "cta";
+        ctaButton.className = "ctaButton";
         ctaButton.id = "promo_ctaLabel_" + i;
         promoCointainer.appendChild(ctaButton);
         
         var promoTerms = document.createElement("p");
+        promoTerms.className = "promoTerms";
         promoTerms.id = "promo_terms_" + i;
+        
         promoCointainer.appendChild(promoTerms);    
     }
 }());
@@ -137,7 +140,10 @@ function disablePromo(i){
         document.getElementById(promotions[i].id).style.background = 'white';
         
         //disable button of disabled promo
+        ctaBtn[i].isDisabled = true;
         ctaBtn[i].disabled = true;
+        document.getElementById("promo_ctaLabel_" + i).style.background = "white";
+
     }
 }
 
