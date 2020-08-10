@@ -5,7 +5,7 @@
       "title": "ea nostrud duis",
       "ctaLabel": "sint sint proident",
       "terms": "deserunt id cinostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudnostrudllum cupidatat in",
-      "isDisabled": true
+      "isDisabled": false
     },
     {
       "id": "5f2bda2ab2eebb0883461a74",
@@ -89,53 +89,115 @@
     }
   ]
  
- 
+//creating a list of CTA Buttons
+//each element is a button bound with its promo
 var ctaBtn = document.getElementsByClassName("cta");
+
+//modal window that appear after clicking CTA button
 var modal = document.getElementById("myModal");
+
+//two buttons at modal window
 var acceptPromoBtn = document.getElementById("acceptPromo");
 var declinePromoBtn = document.getElementById("declinePromo");
 
 
+(function createElements(){
+    
+    
+    for (var i = 0; i < promotions.length; i++){
+        
+        //create all HTML elements dynimcally 
+        var newDiv = document.createElement("div");
+        var newH = document.createElement("h1");
+        var newButton = document.createElement("button");
+        var newP = document.createElement("p");
+        
+        //assign classes and id's to new elements
+        newDiv.className = "area";
+        newDiv.id = promotions[i].id;
+        newH.id = "promo_title_" + i;
+        newButton.className = "cta";
+        newButton.id = "promo_ctaLabel_" + i;
+        newP.id = "promo_terms_" + i;
+        
+        //append new elements to already existing div
+        document.getElementById("column").appendChild(newDiv);
+        newDiv.appendChild(newH);
+        newDiv.appendChild(newButton);
+        newDiv.appendChild(newP);
+        
+    }
+}());
 
 function disablePromo(i){
     if(promotions[i].isDisabled === true){
-        document.getElementById(promotions[i].id).style.background = 'white';        
+        
+        //change the style of promo which is disabled
+        document.getElementById(promotions[i].id).style.background = 'white';
+        
+        //disable button of disabled promo
+        ctaBtn[i].disabled = true;
     }
 }
 
 (function(){
     for (var i = 0; i < promotions.length; i++){
+        
+        //at start disable all promos that have isDisabled flag set to true
         disablePromo(i);
-            
+        
+        //set title, terms and ctaLabel for newly created HTML elements
         document.getElementById("promo_title_" + [i]).innerHTML = promotions[i].title;
 
         document.getElementById("promo_terms_" + [i]).innerHTML = promotions[i].terms;
 
-         document.getElementById("promo_ctaLabel_" + [i]).innerHTML = promotions[i].ctaLabel;
+        document.getElementById("promo_ctaLabel_" + [i]).innerHTML = promotions[i].ctaLabel;
     }
 }());
     
 (function() {    
     for (var i = 0; i < ctaBtn.length; i++) {
         
+        
         ctaBtn[i].onclick = (function(i){
             return function(){
+                
                 console.log(i);
+                
+                //display window after clicking CTA button
+                modal.style.display = "block";
+                
+                //set text in window to terms of that promo
+                var modalText = document.createTextNode(promotions[i].terms);
+                
+                document.getElementById("modal-text").appendChild(modalText);
+                
                 acceptPromoBtn.onclick = function(){
+                    
+                    //set isDisabled flag to true if clicked Accpet
                     promotions[i].isDisabled = true;
+                    
+                    //use disablePromo function on this element
                     disablePromo(i);
+                    
+                    //close the window
                     modal.style.display = "none";
-                    console.log(i);
+                    
+                    //clearing text in window because of prev appending
+                    document.getElementById("modal-text").innerHTML ="";
                 }
                 declinePromoBtn.onclick = function(){
                     modal.style.display = "none";
+                    
+                    //clearing text in window because of prev appending
+                    document.getElementById("modal-text").innerHTML ="";
                 }
-                modal.style.display = "block";
+                
             }
-        }(i));
-        
+        }(i)); 
     }
 }());
+
 
 
 
