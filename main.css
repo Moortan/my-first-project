@@ -8,6 +8,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 header{
     background-color: #3F51B5;
     padding: 0.5em;
@@ -25,17 +26,22 @@ header{
 }
 
 .promoContainer {
+    min-width: 12rem;
     text-align: center;
     word-wrap: break-word;
     border-radius: 1.5em;
     border: 0.1em solid black;
     padding: 1em;
     width: 70%;
-    height: 10em;
+    height: 13em;
     overflow: auto;
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: #4CAF50;
+}
+
+.promoTerms {
+    text-align: left;
 }
 
 .ctaButton {
@@ -89,6 +95,66 @@ header{
 }
 
 
+@media (min-width: 748px){
+    .column {
+        margin: 0 -0.5em;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .promoContainer {
+        margin: 1em 1em 0 0.5em;
+        flex-basis: calc(100% / 3);
+        flex-shrink: 0;
+        height: 20em;
+    }
+}
+
+@media (min-width: 1100px){
+    .promoContainer {
+        flex-basis: calc(100% / 4);
+    }
+}
+
+@media (min-width: 2000px){
+    .promoContainer {
+        flex-basis: calc(100% / 6);
+    }
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  max-width: 40rem;
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#modal-text {
+    text-align: center;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
 #acceptPromo {
 	box-shadow:inset 0px 1px 0px 0px #3dc21b;
 	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
@@ -137,39 +203,5 @@ header{
 #declinePromo:active {
 	position:relative;
 	top:1px;
-}
-
-
-
-
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  text-align: center;
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-#modal-text {
-    text-align: center;
-    word-wrap: break-word;
-    overflow: auto;
 }
 

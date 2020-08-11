@@ -128,7 +128,6 @@ var declinePromoBtn = document.getElementById("declinePromo");
         var promoTerms = document.createElement("p");
         promoTerms.className = "promoTerms";
         promoTerms.id = "promo_terms_" + i;
-        
         promoCointainer.appendChild(promoTerms);    
     }
 }());
@@ -137,11 +136,16 @@ function disablePromo(i){
     if(promotions[i].isDisabled === true){
         
         //change the style of promo which is disabled
-        document.getElementById(promotions[i].id).style.background = 'white';
+        document.getElementById(promotions[i].id).style.background = "#A9A9A9";
+        document.getElementById("promo_ctaLabel_" + i).style.background = "#C0C0C0";
+        document.getElementById("promo_ctaLabel_" + i).style.color = "black";
+        document.getElementById("promo_ctaLabel_" + i).style.boxShadow = "none";
+        document.getElementById("promo_ctaLabel_" + i).style.textShadow = "none";
         
-        //disable button of disabled promo
         ctaBtn[i].isDisabled = true;
         //document.getElementById("promo_ctaLabel_" + i).className += "disabledButton";
+        
+        //disable button of disabled promo        
         ctaBtn[i].disabled = true;
 
     }
