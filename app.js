@@ -138,13 +138,9 @@ function disablePromo(i){
         //change the style of promo which is disabled
         document.getElementById(promotions[i].id).style.background = "#A9A9A9";
         document.getElementById("promo_ctaLabel_" + i).style.background = "#C0C0C0";
-        document.getElementById("promo_ctaLabel_" + i).style.color = "black";
-        document.getElementById("promo_ctaLabel_" + i).style.boxShadow = "none";
-        document.getElementById("promo_ctaLabel_" + i).style.textShadow = "none";
         
         ctaBtn[i].isDisabled = true;
-        //document.getElementById("promo_ctaLabel_" + i).className += "disabledButton";
-        
+        document.getElementById("promo_ctaLabel_" + i).classList.add("disabledButton");
         //disable button of disabled promo        
         ctaBtn[i].disabled = true;
 
@@ -210,15 +206,4 @@ function disablePromo(i){
 }());
 
 
-
-
-
-
- 
- 
-
-
-
-
- 
 
