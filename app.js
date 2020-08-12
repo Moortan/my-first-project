@@ -139,7 +139,6 @@ function disablePromo(i){
         document.getElementById(promotions[i].id).style.background = "#A9A9A9";
         document.getElementById("promo_ctaLabel_" + i).style.background = "#C0C0C0";
         
-        ctaBtn[i].isDisabled = true;
         document.getElementById("promo_ctaLabel_" + i).classList.add("disabledButton");
         //disable button of disabled promo        
         ctaBtn[i].disabled = true;
@@ -154,17 +153,16 @@ function disablePromo(i){
         disablePromo(i);
         
         //set title, terms and ctaLabel for newly created HTML elements
-        document.getElementById("promo_title_" + [i]).innerHTML = promotions[i].title;
+        document.getElementById("promo_title_" + i).innerHTML = promotions[i].title;
 
-        document.getElementById("promo_terms_" + [i]).innerHTML = promotions[i].terms;
+        document.getElementById("promo_terms_" + i).innerHTML = promotions[i].terms;
 
-        document.getElementById("promo_ctaLabel_" + [i]).innerHTML = promotions[i].ctaLabel;
+        document.getElementById("promo_ctaLabel_" + i).innerHTML = promotions[i].ctaLabel;
     }
 }());
     
 (function() {    
     for (var i = 0; i < ctaBtn.length; i++) {
-        
         
         ctaBtn[i].onclick = (function(i){
             return function(){
@@ -183,6 +181,7 @@ function disablePromo(i){
                     
                     //set isDisabled flag to true if clicked Accpet
                     promotions[i].isDisabled = true;
+                    console.log("isDisabled: " + promotions[i].isDisabled);
                     
                     //use disablePromo function on this element
                     disablePromo(i);
@@ -195,6 +194,7 @@ function disablePromo(i){
                 }
                 declinePromoBtn.onclick = function(){
                     modal.style.display = "none";
+                    console.log("isDisabled: " + promotions[i].isDisabled);
                     
                     //clearing text in window because of prev appending
                     document.getElementById("modal-text").innerHTML ="";
