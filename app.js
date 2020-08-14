@@ -140,6 +140,7 @@ function disablePromo(i){
         document.getElementById("promo_ctaLabel_" + i).style.background = "#C0C0C0";
         
         document.getElementById("promo_ctaLabel_" + i).classList.add("disabledButton");
+        
         //disable button of disabled promo        
         ctaBtn[i].disabled = true;
 
@@ -192,7 +193,9 @@ function disablePromo(i){
                     //clearing text in window because of prev appending
                     document.getElementById("modal-text").innerHTML ="";
                 }
+                
                 declinePromoBtn.onclick = function(){
+                    
                     modal.style.display = "none";
                     console.log("isDisabled: " + promotions[i].isDisabled);
                     
